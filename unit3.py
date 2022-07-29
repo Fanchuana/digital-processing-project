@@ -306,21 +306,22 @@ def img_right_load(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
-    self.unit3_img3 = cv2.imread(fileName, -1)
+    self.unit3_img3 = cv2.imread(fileName, cv2.IMREAD_GRAYSCALE)
     if self.unit3_img3.size <= 1:
         return
-    if len(self.unit3_img3.shape) == 3:
-        self.unit3_img3_channel = 3
-        if self.unit3_img3.shape[2] == 4:
-            self.unit3_img3 = cv2.cvtColor(self.unit3_img3, cv2.COLOR_BGRA2BGR)
     print(self.unit3_img3.shape)
     unit3_img_refresh(self)
 
 
 def erode(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size>1:
       if x and y:
           x = int(x)
@@ -348,8 +349,13 @@ def erode(self):
 
 def dilate(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -377,8 +383,13 @@ def dilate(self):
 
 def opening(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -406,8 +417,13 @@ def opening(self):
 
 def closing(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -435,8 +451,13 @@ def closing(self):
 
 def mean(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -467,8 +488,13 @@ def mean(self):
 
 def guassian(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+        x = self.ui.lineEdit_20.text()
+        y = self.ui.lineEdit_27.text()
+    except:
+        msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+        msg_box.exec_()
+        return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -499,8 +525,13 @@ def guassian(self):
 
 def Covfilter(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -532,8 +563,13 @@ def Covfilter(self):
 
 def median(self):
     checked = self.ui.radioButton.isChecked()
-    x = self.ui.lineEdit_20.text()
-    y = self.ui.lineEdit_27.text()
+    try:
+      x = self.ui.lineEdit_20.text()
+      y = self.ui.lineEdit_27.text()
+    except:
+      msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+      msg_box.exec_()
+      return
     if self.unit3_img3.size > 1:
         if x and y:
             x = int(x)
@@ -542,6 +578,7 @@ def median(self):
                 msg_box = QMessageBox(QMessageBox.Warning, '中值滤波算子长宽均为正奇数且相等', '请重新输入')
                 msg_box.exec_()
                 return
+            print(x,y)
             if checked:
                 if self.unit3_result2.size > 1:
                     self.unit3_result2 = cv2.medianBlur(self.unit3_result2, x)
@@ -577,9 +614,14 @@ def img_right_clear(self):
 
 def bilateralFilter(self):
     checked = self.ui.radioButton.isChecked()
-    d = self.ui.lineEdit_11.text()
-    sigmaSpace = self.ui.lineEdit_12.text()
-    sigmaColor = self.ui.lineEdit_13.text()
+    try:
+       d = self.ui.lineEdit_11.text()
+       sigmaSpace = self.ui.lineEdit_12.text()
+       sigmaColor = self.ui.lineEdit_13.text()
+    except:
+       msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
+       msg_box.exec_()
+       return
     if self.unit3_img3.size > 1:
         if d and sigmaSpace and sigmaColor:
             d = int(d)
@@ -629,15 +671,21 @@ def add_noise_Guass(self):  # 添加高斯噪声
 
 def add_noise_Jiaoyan(self):
     if self.unit3_img3.size>1:
-      n=10000
+      SNR = 0.9
+      print("Jiao Yan Ready")
       self.unit3_result2 = self.unit3_img3.copy()
       w, h = self.unit3_result2.shape[:2]
-      for i in range(w):
-          for j in range(h):
-              if self.unit3_result2[i,j]<100:
-                  self.unit3_result2[i, j]=0
-              elif self.unit3_result2[i, j]>200:
-                  self.unit3_result2[i, j]=256
+      noisy_size = int(self.unit3_result2.size*(1-SNR))
+      print(noisy_size)
+      for k in range(0,noisy_size):
+        t = np.random.randint(0,1)
+        x = int(np.random.uniform(0, w))
+        y = int(np.random.uniform(0, h))
+        if t<0.5:
+          self.unit3_result2[x, y]=0
+        else :
+          self.unit3_result2[x, y]=256
+      print("Jiao Yan Over")
       unit3_img_refresh(self)
     else:
         msg_box = QMessageBox(QMessageBox.Warning, '提示', '请选择图像')

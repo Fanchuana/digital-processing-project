@@ -45,7 +45,7 @@
      <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -611,9 +611,9 @@
       <property name="geometry">
        <rect>
         <x>500</x>
-        <y>70</y>
-        <width>252</width>
-        <height>298</height>
+        <y>20</y>
+        <width>550</width>
+        <height>360</height>
        </rect>
       </property>
       <property name="cursor">
@@ -627,28 +627,6 @@
       </property>
       <property name="text">
        <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_17">
-      <property name="geometry">
-       <rect>
-        <x>770</x>
-        <y>70</y>
-        <width>252</width>
-        <height>298</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Box</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Sunken</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
       </property>
      </widget>
      <widget class="QLabel" name="label_18">
@@ -677,7 +655,7 @@
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>310</y>
+        <y>260</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -727,19 +705,6 @@
         <width>71</width>
         <height>31</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_13">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>190</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>局部统计</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_14">
@@ -831,7 +796,7 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>320</y>
+        <y>270</y>
         <width>41</width>
         <height>16</height>
        </rect>
@@ -903,6 +868,42 @@
       </property>
       <property name="text">
        <string>保存图像</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>340</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Std</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_5">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>330</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_13">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>190</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>局部统计</string>
       </property>
      </widget>
     </widget>
@@ -1174,19 +1175,6 @@
        <string>*</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton">
-      <property name="geometry">
-       <rect>
-        <x>960</x>
-        <y>300</y>
-        <width>115</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>padding？</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_50">
       <property name="geometry">
        <rect>
@@ -1294,14 +1282,20 @@
      <widget class="QRadioButton" name="radioButton_2">
       <property name="geometry">
        <rect>
-        <x>960</x>
-        <y>360</y>
+        <x>950</x>
+        <y>310</y>
         <width>115</width>
         <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>叠加？</string>
+       <string>叠加至原图</string>
+      </property>
+      <property name="autoRepeat">
+       <bool>true</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_58">

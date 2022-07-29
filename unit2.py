@@ -129,7 +129,9 @@ def globalH(self):
         hist_refresh(self,hist)
         Mean, Std = cv2.meanStdDev(self.img2)
         Mean = round(Mean[0][0], 3)
+        Std = round(Std[0][0], 3)
         self.ui.textBrowser_2.setText('%s' % Mean)
+        self.ui.textBrowser_5.setText('%s' % Std)
     else:
         msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '请选择图像  ')
         msg_box.exec_()
@@ -149,12 +151,14 @@ def localH(self):
             a2 = x1 if x1<=x2 else x2
             b1 = y1 if y1>y2 else y2
             b2 = y1 if y1<=y2 else y2
-            img = self.img2[a2:a1,b2:b1]
+            img = self.img2[a2:a1+1,b2:b1+1]
             hist = np.bincount(img.ravel(), minlength=256)
             hist_refresh(self, hist)
             Mean, Std = cv2.meanStdDev(img)
             Mean = round(Mean[0][0], 3)
+            Std = round(Std[0][0],3)
             self.ui.textBrowser_2.setText('%s' % Mean)
+            self.ui.textBrowser_5.setText('%s' % Std)
         except:
             msg_box = QMessageBox(QMessageBox.Warning, '参数异常', '请重新输入参数  ')
             msg_box.exec_()
@@ -163,8 +167,6 @@ def localH(self):
         msg_box.exec_()
 
 
-#def enhance(self):
-        return enhance(self)
 
 def unit2_clear(self):
     if self.img2.size>1:
@@ -179,21 +181,21 @@ def unit2_clear(self):
 def unit2_img_refresh(self):
         self.img2Show = self.img2
         M = np.float32([[1, 0, 0], [0, 1, 0]])
-        if self.h2 / self.w2 == 298 / 252:
+        if self.h2 / self.w2 == 360 / 550:
             data = self.img2Show.tobytes()
             image = QtGui.QImage(data, self.w2, self.h2, self.w2 * self.channel2, QtGui.QImage.Format_Grayscale8)
             pix = QtGui.QPixmap.fromImage(image)
-            scale_pix = pix.scaled(252, 298)
+            scale_pix = pix.scaled(550, 360)
             self.ui.label_16.setPixmap(scale_pix)
             return
-        elif self.h2 / self.w2 > 298 / 252:
+        elif self.h2 / self.w2 > 360 / 550:
             h_ = self.h2
-            w_ = int(self.h2 * 252 / 298 + 0.5)
+            w_ = int(self.h2 * 550 / 360 + 0.5)
             M[0, 2] += (w_ - self.w2) / 2
             M[1, 2] += (h_ - self.h2) / 2
             print(M)
         else:
-            h_ = int(self.w2 * 298 / 252 + 0.5)
+            h_ = int(self.w2 * 360 / 550 + 0.5)
             w_ = self.w2
             M[0, 2] += (w_ - self.w2) / 2
             M[1, 2] += (h_ - self.h2) / 2
@@ -201,38 +203,48 @@ def unit2_img_refresh(self):
         data = self.img2Show.tobytes()
         image = QtGui.QImage(data, w_, h_, w_ * self.channel2, QtGui.QImage.Format_Grayscale8)
         pix = QtGui.QPixmap.fromImage(image)
-        scale_pix = pix.scaled(252, 298)
+        scale_pix = pix.scaled(550, 360)
         self.ui.label_16.setPixmap(scale_pix)
 
 def mouseReleaseEvent(self, e):
-    globalpos = e.globalPos()
-    pos = self.ui.label_16.mapFromGlobal(globalpos)
-    if pos.y() < 298 and pos.y() > 0 and pos.x() > 0 and pos.x() < 252:
-        self.m_drag = False
-        e.accept()
+    if self.img2.size > 1:
+       globalpos = e.globalPos()
+       pos = self.ui.label_16.mapFromGlobal(globalpos)
+       if pos.y() < 360 and pos.y() > 0 and pos.x() > 0 and pos.x() < 550:
+           self.m_drag = False
+           e.accept()
+       else:
+           e.accept()
     else:
-        e.accept()
+        msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '请选择图像  ')
+        msg_box.exec_()
+
 
 def mousePressEvent(self, e):
-    globalpos = e.globalPos()
-    pos = self.ui.label_16.mapFromGlobal(globalpos)
-    if pos.y() < 298 and pos.y() > 0 and pos.x() > 0 and pos.x() < 252:
-        self.m_drag = True
-        self.m_DragPosition = pos
-        e.accept()
+    if self.img2.size > 1:
+       globalpos = e.globalPos()
+       pos = self.ui.label_16.mapFromGlobal(globalpos)
+       if pos.y() < 360 and pos.y() > 0 and pos.x() > 0 and pos.x() < 550:
+           self.m_drag = True
+           self.m_DragPosition = pos
+           e.accept()
+       else:
+           e.accept()
     else:
-        e.accept()
+        msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '请选择图像  ')
+        msg_box.exec_()
+
 
 def mouseMoveEvent(self, e):
     globalpos = e.globalPos()
     pos = self.ui.label_16.mapFromGlobal(globalpos)
-    if pos.y() < 298 and pos.y() > 0 and pos.x() > 0 and pos.x() < 252:
-        h = self.img2Show.shape[0]
-        w = self.img2Show.shape[1]
-        self.ui.lineEdit_9.setText('%s' % round(self.m_DragPosition.x()/252*w))
-        self.ui.lineEdit_10.setText('%s' % round(pos.x()/252*w))
-        self.ui.lineEdit_15.setText('%s' % round(self.m_DragPosition.y()/ 298 * h))
-        self.ui.lineEdit_16.setText('%s' % round(pos.y()/ 298 * h))
+    if pos.y() < 360 and pos.y() > 0 and pos.x() > 0 and pos.x() < 550:
+        h = self.img2.shape[0]
+        w = self.img2.shape[1]
+        self.ui.lineEdit9.setText('%s' % round(self.m_DragPosition.x()/550*w))
+        self.ui.lineEdit10.setText('%s' % round(pos.x()/550*w))
+        self.ui.lineEdit_15.setText('%s' % round(self.m_DragPosition.y()/ 360 * h))
+        self.ui.lineEdit_16.setText('%s' % round(pos.y()/ 360 * h))
         e.accept()
     else:
         e.accept()

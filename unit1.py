@@ -19,6 +19,7 @@ def unit1_img_load(self):
         self.channel = 3
         if self.img.shape[2] == 4:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGRA2BGR)
+    self.imgOrg = self.img.copy()
     print(self.img.shape)
     img_refresh(self)
 
