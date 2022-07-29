@@ -26,7 +26,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>0</y>
       <width>1080</width>
       <height>718</height>
@@ -45,7 +45,7 @@
      <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -2283,13 +2283,26 @@
        </rect>
       </property>
       <property name="text">
-       <string>  在进行风格迁移前，请先选择图像和风格图，并点击“风格迁移”。由于网络骨干为VGG16，规模较为庞大，训练速度较慢，请等待半分钟到一分钟即可。</string>
+       <string>  在进行风格迁移前，请先选择图像和风格图，并点击“风格迁移”。由于网络骨干为VGG16，规模较为庞大，训练速度较慢，请等待半分钟到一分钟即可。（RTX2060 6G）</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_8">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>620</y>
+        <width>411</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
       </property>
      </widget>
     </widget>

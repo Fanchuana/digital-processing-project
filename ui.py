@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setEnabled(True)
-        self.tabWidget.setGeometry(QtCore.QRect(-10, 0, 1080, 718))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 1080, 718))
         self.tabWidget.setMinimumSize(QtCore.QSize(1080, 718))
         self.tabWidget.setFocusPolicy(QtCore.Qt.TabFocus)
         self.tabWidget.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
@@ -607,6 +607,10 @@ class Ui_MainWindow(object):
         self.label_60.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.label_60.setWordWrap(True)
         self.label_60.setObjectName("label_60")
+        self.textBrowser_8 = QtWidgets.QTextBrowser(self.tab_6)
+        self.textBrowser_8.setGeometry(QtCore.QRect(190, 620, 411, 33))
+        self.textBrowser_8.setAcceptDrops(False)
+        self.textBrowser_8.setObjectName("textBrowser_8")
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_7 = QtWidgets.QWidget()
         self.tab_7.setEnabled(True)
@@ -677,7 +681,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuun1.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -808,7 +812,7 @@ class Ui_MainWindow(object):
         self.pushButton_42.setText(_translate("MainWindow", "风格迁移"))
         self.pushButton_43.setText(_translate("MainWindow", "保存"))
         self.progressBar.setFormat(_translate("MainWindow", "loading...%"))
-        self.label_60.setText(_translate("MainWindow", "  在进行风格迁移前，请先选择图像和风格图，并点击“风格迁移”。由于网络骨干为VGG16，规模较为庞大，训练速度较慢，请等待半分钟到一分钟即可。"))
+        self.label_60.setText(_translate("MainWindow", "  在进行风格迁移前，请先选择图像和风格图，并点击“风格迁移”。由于网络骨干为VGG16，规模较为庞大，训练速度较慢，请等待半分钟到一分钟即可。（RTX2060 6G）"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "6.风格迁移"))
         self.pushButton_32.setText(_translate("MainWindow", "选择图像"))
         self.pushButton_71.setText(_translate("MainWindow", "选择模型"))

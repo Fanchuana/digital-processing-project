@@ -53,6 +53,7 @@ def init(self):
     self.filepath2 =''
     self.ui.progressBar.setValue(0)
     self.ui.progressBar.setMaximum(100)
+    self.ui.textBrowser_8.setText('您的设备有cuda，可以运行'if torch.cuda.is_available() else "您的设备没有cuda，不建议运行")
 
 def img_load1(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
