@@ -289,7 +289,7 @@ def img_left_save(self):
         msg_box = QMessageBox(QMessageBox.Information, '成功', '图像保存成功,保存路径为：' + fileName)
         msg_box.exec_()
     else:
-        msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '没有生成图像')
+        msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '请生成图像')
         msg_box.exec_()
 
 
@@ -314,7 +314,7 @@ def img_right_load(self):
 
 
 def erode(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -348,7 +348,7 @@ def erode(self):
 
 
 def dilate(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -382,7 +382,7 @@ def dilate(self):
 
 
 def opening(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -416,7 +416,7 @@ def opening(self):
 
 
 def closing(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -450,7 +450,7 @@ def closing(self):
 
 
 def mean(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -487,7 +487,7 @@ def mean(self):
 
 
 def guassian(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
         x = self.ui.lineEdit_20.text()
         y = self.ui.lineEdit_27.text()
@@ -524,7 +524,7 @@ def guassian(self):
 
 
 def Covfilter(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -562,7 +562,7 @@ def Covfilter(self):
 
 
 def median(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
       x = self.ui.lineEdit_20.text()
       y = self.ui.lineEdit_27.text()
@@ -613,31 +613,31 @@ def img_right_clear(self):
     unit3_img_refresh(self)
 
 def bilateralFilter(self):
-    checked = self.ui.radioButton.isChecked()
+    checked = self.ui.radioButton_2.isChecked()
     try:
        d = self.ui.lineEdit_11.text()
-       sigmaSpace = self.ui.lineEdit_12.text()
-       sigmaColor = self.ui.lineEdit_13.text()
+       sigmaspace = self.ui.lineEdit_12.text()
+       sigmacolor = self.ui.lineEdit_13.text()
     except:
        msg_box = QMessageBox(QMessageBox.Warning, '结构元不能为空', '请重新输入')
        msg_box.exec_()
        return
     if self.unit3_img3.size > 1:
-        if d and sigmaSpace and sigmaColor:
+        if d and sigmaspace and sigmacolor:
             d = int(d)
-            sigmaSpace = int(sigmaSpace)
-            sigmaColor = int(sigmaColor)
-            if d <= 0 or sigmaColor <= 0 or sigmaSpace <= 0:
+            sigmaspace = int(sigmaspace)
+            sigmacolor = int(sigmacolor)
+            if d <= 0 or sigmacolor <= 0 or sigmaspace <= 0:
                 msg_box = QMessageBox(QMessageBox.Warning, '中值滤波算子长宽均为正奇数且相等', '请重新输入')
                 msg_box.exec_()
                 return
             if checked:
                 if self.unit3_result2.size > 1:
-                    self.unit3_result2 = cv2.bilateralFilter(self.unit3_result2, d, sigmaColor, sigmaSpace)
+                    self.unit3_result2 = cv2.bilateralFilter(self.unit3_result2, d, sigmacolor, sigmaspace)
                 else:
-                    self.unit3_result2 = cv2.bilateralFilter(self.unit3_img3, d, sigmaColor, sigmaSpace)
+                    self.unit3_result2 = cv2.bilateralFilter(self.unit3_img3, d, sigmacolor, sigmaspace)
             else:
-                self.unit3_result2 = cv2.bilateralFilter(self.unit3_img3, d, sigmaColor, sigmaSpace)
+                self.unit3_result2 = cv2.bilateralFilter(self.unit3_img3, d, sigmacolor, sigmaspace)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
                 if self.unit3_result2.shape[2] == 4:
@@ -701,7 +701,7 @@ def img_right_save(self):
         msg_box = QMessageBox(QMessageBox.Information, '成功', '图像保存成功,保存路径为：' + fileName)
         msg_box.exec_()
     else:
-        msg_box = QMessageBox(QMessageBox.Warning, '提示', '请选择图像')
+        msg_box = QMessageBox(QMessageBox.Warning, '没有图像', '请生成图像')
         msg_box.exec_()
 
 

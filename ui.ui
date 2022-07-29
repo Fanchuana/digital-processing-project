@@ -1489,33 +1489,33 @@
        </rect>
       </property>
       <property name="text">
-       <string>半径</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_12">
       <property name="geometry">
        <rect>
         <x>730</x>
-        <y>630</y>
+        <y>650</y>
         <width>91</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>空间标准差</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_13">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>630</y>
+        <x>860</x>
+        <y>590</y>
         <width>91</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>色彩标准差</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_67">
@@ -1542,6 +1542,45 @@
       </property>
       <property name="text">
        <string>椒盐噪声</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_61">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>590</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>半径</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_62">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>590</y>
+        <width>72</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>色彩标准差</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_63">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>650</y>
+        <width>72</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>空间标准差</string>
       </property>
      </widget>
     </widget>
