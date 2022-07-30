@@ -687,7 +687,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_3.setText(_translate("MainWindow", "查看原图"))
+        self.pushButton_3.setText(_translate("MainWindow", "查看图像"))
         self.label_2.setText(_translate("MainWindow", "y"))
         self.label.setText(_translate("MainWindow", "x"))
         self.label_3.setText(_translate("MainWindow", "y"))
@@ -719,7 +719,7 @@ class Ui_MainWindow(object):
         self.label_18.setText(_translate("MainWindow", "                     直方图"))
         self.pushButton_11.setText(_translate("MainWindow", "选择图像"))
         self.pushButton_12.setText(_translate("MainWindow", "全局统计"))
-        self.pushButton_14.setText(_translate("MainWindow", "原图"))
+        self.pushButton_14.setText(_translate("MainWindow", "查看"))
         self.pushButton_15.setText(_translate("MainWindow", "直方图均衡"))
         self.pushButton_16.setText(_translate("MainWindow", "CLAHE"))
         self.pushButton_17.setText(_translate("MainWindow", "清空"))
@@ -756,7 +756,7 @@ class Ui_MainWindow(object):
         self.pushButton_54.setText(_translate("MainWindow", "拉普拉斯滤波"))
         self.pushButton_55.setText(_translate("MainWindow", "均值滤波"))
         self.pushButton_56.setText(_translate("MainWindow", "中值滤波"))
-        self.radioButton_2.setText(_translate("MainWindow", "叠加至原图"))
+        self.radioButton_2.setText(_translate("MainWindow", "作用于结果图"))
         self.pushButton_58.setText(_translate("MainWindow", "清空"))
         self.pushButton_59.setText(_translate("MainWindow", "保存"))
         self.pushButton_61.setText(_translate("MainWindow", "保存"))

@@ -108,9 +108,7 @@ def ADD(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行加操作')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size<=1 or self.unit3_img2.size<=1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相加')
         msg_box.exec_()
@@ -132,9 +130,7 @@ def SUB(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行减操作')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相减')
         msg_box.exec_()
@@ -157,9 +153,7 @@ def MULTI(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行乘操作')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相乘')
         msg_box.exec_()
@@ -182,9 +176,7 @@ def DIVIDE(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '图片中有灰度值为0的像素点')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相除')
         msg_box.exec_()
@@ -207,9 +199,7 @@ def AND(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行与操作')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片再进行与操作')
         msg_box.exec_()
@@ -232,9 +222,7 @@ def OR(self):
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行或操作')
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
-            self.unit3_result1.channel = 3
-            if self.unit3_result1.shape[2] == 4:
-                self.unit3_result1 = cv2.cvtColor(self.unit3_result1, cv2.COLOR_BGRA2BGR)
+            self.unit3_result1_channel = 3
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再进行或操作')
         msg_box.exec_()
@@ -294,7 +282,7 @@ def img_left_save(self):
 
 
 def img_left_show(self):
-    if self.unit3_result1 > 1:
+    if self.unit3_result1.size > 1:
         cv2.imshow('Original pic', self.unit3_result1)
         cv2.waitKey(0)
     else:
@@ -706,7 +694,7 @@ def img_right_save(self):
 
 
 def img_right_show(self):
-    if self.unit3_result2 > 1:
+    if self.unit3_result2.size > 1:
         cv2.imshow('Original pic', self.unit3_result2)
         cv2.waitKey(0)
     else:

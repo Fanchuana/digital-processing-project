@@ -67,7 +67,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>查看原图</string>
+       <string>查看图像</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -717,7 +717,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>原图</string>
+       <string>查看</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_15">
@@ -1289,7 +1289,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>叠加至原图</string>
+       <string>作用于结果图</string>
       </property>
       <property name="autoRepeat">
        <bool>true</bool>
