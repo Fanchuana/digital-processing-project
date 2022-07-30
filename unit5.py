@@ -107,6 +107,7 @@ def img_load(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    init(self)
     self.unit5_img = cv2.imread(fileName, cv2.IMREAD_GRAYSCALE)
     self.unit5_imgOrg = self.unit5_img.copy()
     if self.unit5_img.size>= 1:

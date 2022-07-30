@@ -72,6 +72,10 @@ def img_left_load1(self):
       fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
       if fileName == '':
           return
+      self.unit3_img1 = np.ndarray(())
+      self.unit3_result1 = np.ndarray(())
+      self.unit3_img1_channel = 1
+      self.unit3_result1_channel = 1
       self.unit3_img1 = cv2.imread(fileName, -1)
       if self.unit3_img1.size <= 1:
           return
@@ -87,6 +91,8 @@ def img_left_load2(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    self.unit3_img2 = np.ndarray(())
+    self.unit3_img2_channel = 1
     self.unit3_img2 = cv2.imread(fileName, -1)
     if self.unit3_img2.size <= 1:
         return
@@ -109,6 +115,8 @@ def ADD(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size<=1 or self.unit3_img2.size<=1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相加')
         msg_box.exec_()
@@ -131,6 +139,8 @@ def SUB(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相减')
         msg_box.exec_()
@@ -154,6 +164,8 @@ def MULTI(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相乘')
         msg_box.exec_()
@@ -177,6 +189,8 @@ def DIVIDE(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再相除')
         msg_box.exec_()
@@ -200,6 +214,8 @@ def AND(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片再进行与操作')
         msg_box.exec_()
@@ -223,6 +239,8 @@ def OR(self):
             msg_box.exec_()
         if len(self.unit3_result1.shape) == 3:
             self.unit3_result1_channel = 3
+        else:
+            self.unit3_result1_channel = 1
     elif self.unit3_img1.size <= 1 or self.unit3_img2.size <= 1:
         msg_box = QMessageBox(QMessageBox.Warning, '缺失图片', '请选择两张图片后再进行或操作')
         msg_box.exec_()
@@ -238,7 +256,11 @@ def OR(self):
 def NOT(self):
     if self.unit3_img1.size>1:
         try:
-            self.unit3_result1 = ~self.unit3_img1
+            self.unit3_result1 = cv2.bitwise_not(self.unit3_img1)
+            if len(self.unit3_result1.shape) == 3:
+                self.unit3_result1_channel = 3
+            else:
+                self.unit3_result1_channel = 1
         except:
             msg_box = QMessageBox(QMessageBox.Warning, '图片异常', '请重新选择图片进行或操作')
             msg_box.exec_()
@@ -324,8 +346,8 @@ def erode(self):
               self.unit3_result2 = cv2.erode(self.unit3_img3, kernel)
           if len(self.unit3_result2.shape) == 3:
                   self.unit3_result2.channel = 3
-                  if self.unit3_result2.shape[2] == 4:
-                      self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+          else:
+              self.unit3_result2.channel = 1
           unit3_img_refresh(self)
       else:
           msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -358,8 +380,8 @@ def dilate(self):
                 self.unit3_result2 = cv2.dilate(self.unit3_img3, kernel)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -392,8 +414,8 @@ def opening(self):
                 self.unit3_result2 = cv2.morphologyEx(self.unit3_img3, cv2.MORPH_OPEN, kernel)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -426,8 +448,8 @@ def closing(self):
                 self.unit3_result2 = cv2.morphologyEx(self.unit3_img3, cv2.MORPH_CLOSE, kernel)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -463,8 +485,8 @@ def mean(self):
                 self.unit3_result2 = cv2.blur(self.unit3_img3, (x,y),(-1,-1))
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -500,8 +522,8 @@ def guassian(self):
                 self.unit3_result2 = cv2.GaussianBlur(self.unit3_img3, (x, y), 0,0)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -538,8 +560,8 @@ def Covfilter(self):
                 self.unit3_result2 = cv2.filter2D(self.unit3_img3,  -1, kernel)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -576,8 +598,8 @@ def median(self):
                 self.unit3_result2 = cv2.medianBlur(self.unit3_img3, x)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元为空', '请输入结构元大小')
@@ -628,8 +650,8 @@ def bilateralFilter(self):
                 self.unit3_result2 = cv2.bilateralFilter(self.unit3_img3, d, sigmacolor, sigmaspace)
             if len(self.unit3_result2.shape) == 3:
                 self.unit3_result2.channel = 3
-                if self.unit3_result2.shape[2] == 4:
-                    self.unit3_result3 = cv2.cvtColor(self.unit3_result2, cv2.COLOR_BGRA2BGR)
+            else:
+                self.unit3_result2.channel = 1
             unit3_img_refresh(self)
         else:
             msg_box = QMessageBox(QMessageBox.Warning, '结构元或方差为空', '请输入结构元大小和方差')

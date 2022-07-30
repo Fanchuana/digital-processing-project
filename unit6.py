@@ -59,6 +59,7 @@ def img_load1(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    self.unit6_img1 = np.ndarray(())
     self.filepath1 = fileName
     self.unit6_img1 = cv2.imread(fileName, -1)
     if len(self.unit6_img1.shape) == 3:
@@ -77,6 +78,7 @@ def img_load2(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    self.unit6_img2 = np.ndarray(())
     self.filepath2 = fileName
     self.unit6_img2 = cv2.imread(fileName, -1)
     if len(self.unit6_img2.shape) != 3:

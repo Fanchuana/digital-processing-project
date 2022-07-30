@@ -27,6 +27,7 @@ def img_load(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    init(self)
     self.unit4_img = cv2.imread(fileName, -1)
     if self.unit4_img.size <= 1:
         return

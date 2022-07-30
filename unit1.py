@@ -6,20 +6,24 @@ import os
 
 #
 def unit1_img_load(self):
+    self.img = np.ndarray(())
+    self.imgOrg = np.ndarray(())
+    self.imgShow = np.ndarray(())
+    self.w = 0
+    self.h = 0
+    self.channel = 1
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
        return
-    root_dir, file_name = os.path.split(fileName)
     self.img = cv2.imread(fileName, -1)
     if self.img.size <= 1:
         return
-    self.fname = file_name.split('.')[0]
+    print(self.img.shape)
     self.imgOrg = self.img.copy()
     if len(self.img.shape) == 3:
         self.channel = 3
         if self.img.shape[2] == 4:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGRA2BGR)
-    self.imgOrg = self.img.copy()
     print(self.img.shape)
     img_refresh(self)
 
@@ -53,7 +57,7 @@ def unit1_img_clear(self):
     self.fname = ''
     self.w = 0
     self.h = 0
-    self.c = 1
+    self.channel = 1
     self.ui.textBrowser.setText('')
     self.ui.textBrowser_3.setText('')
     self.ui.textBrowser_4.setText('')
@@ -186,7 +190,6 @@ def img_refresh(self):
     self.w = self.imgShow.shape[1]
     self.ui.textBrowser.setText('%s×%s×%s' % (self.w, self.h, self.channel))
     M = np.float32([[1, 0, 0], [0, 1, 0]])
-    # print(M)
     if self.h / self.w == 50/72:
         data = self.imgShow.tobytes()
         if self.channel == 3:

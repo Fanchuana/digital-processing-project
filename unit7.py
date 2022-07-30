@@ -41,6 +41,10 @@ def img_load(self):
     fileName, tmp = QFileDialog.getOpenFileName(self, '打开图像', 'Image', '*.png *.jpg *.bmp *.jpeg')
     if fileName == '':
         return
+    self.unit7_img = np.ndarray(())
+    self.unit7_img_channel = 1
+    self.unit7_result = np.ndarray(())
+    self.unit7_result_channel = 1
     self.unit7_img = cv2.imread(fileName, -1)
     self.unit7_suffix = fileName.split('/')[-1]
     print(self.unit7_suffix)
